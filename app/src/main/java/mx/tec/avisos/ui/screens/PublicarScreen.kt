@@ -52,6 +52,7 @@ fun PublicarScreen(
     onTituloChange: (String) -> Unit,
     onCuerpoChange: (String) -> Unit,
     onGaleria: () -> Unit,
+    onCamara: () -> Unit,
     onQuitarImagen: () -> Unit,
     onPublicar: () -> Unit,
     onCancelar: () -> Unit,
@@ -117,6 +118,11 @@ fun PublicarScreen(
                     Spacer(Modifier.width(espaciado.sm))
                     Text("Galería")
                 }
+                OutlinedButton(onClick = onCamara, enabled = !uiState.enviando) {
+                    Icon(painterResource(R.drawable.ic_camara), contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.width(espaciado.sm))
+                    Text("Cámara")
+                }
                 if (uiState.imagen != null) {
                     TextButton(onClick = onQuitarImagen, enabled = !uiState.enviando) { Text("Quitar") }
                 }
@@ -153,10 +159,10 @@ private fun PublicarPreview() {
         PublicarScreen(
             uiState = PublicarUiState(
                 titulo = "Examen parcial",
-                cuerpo = "El parcial es el jueves a las 10:00 en el salón de siempre. Traigan lápiz."
+                cuerpo = "El parcial es el jueves a las 10:00 en el salón de siempre. Traigan lápiz.",
             ),
             autor = "profe.prueba",
-            onTituloChange = {}, onCuerpoChange = {}, onPublicar = {}, onCancelar = {}, onGaleria = {}, onQuitarImagen = {}
+            onTituloChange = {}, onCuerpoChange = {}, onPublicar = {}, onCancelar = {}, onGaleria = {}, onQuitarImagen = {}, onCamara = {}
         )
     }
 }
